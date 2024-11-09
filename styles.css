@@ -1,0 +1,522 @@
+body {
+    margin: 0;
+    padding: 20px;
+    background: #f0f0f0;
+    font-family: 'Microsoft YaHei', sans-serif;
+}
+
+.game-container {
+    max-width: 800px;
+    width: 95%;
+    margin: 0 auto;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.stats-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: #f8f8f8;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.cultivation-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.current-state, .next-state {
+    text-align: center;
+}
+
+.level-title {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.level-value {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.cultivation-method {
+    padding: 10px;
+    background: #e8f5e9;
+    border-radius: 5px;
+}
+
+.method-title {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.method-name {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 8px;
+}
+
+.method-gains {
+    font-size: 0.9em;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.passive {
+    color: #666;
+    font-style: italic;
+}
+
+.cultivation-stats, .other-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 10px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 5px;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.stat-title {
+    font-size: 0.8em;
+    color: #666;
+    margin-bottom: 3px;
+}
+
+.stat-value {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.story-panel {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    height: 500px;
+    overflow-y: auto;
+}
+
+.story-content {
+    font-size: 1.1em;
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+.action-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.main-actions {
+    position: relative;
+    text-align: center;
+}
+
+.main-btn {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    font-size: 24px;
+    background: linear-gradient(145deg, #4CAF50, #45a049);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.main-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.click-power {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    color: #4CAF50;
+    font-weight: bold;
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.click-power.active {
+    animation: floatUp 0.5s ease-out;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+}
+
+.sub-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.sub-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    background: #f8f8f8;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.btn-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.btn-subtitle {
+    font-size: 12px;
+    color: #666;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+#story-content {
+    margin-bottom: 15px;
+    white-space: pre-line;
+    font-size: clamp(0.95em, 2.5vw, 1em);
+}
+
+#choices {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 添加标题样式 */
+.game-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+.game-title h1 {
+    font-size: clamp(1.8em, 5vw, 2.5em);
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.subtitle {
+    font-size: clamp(1em, 3vw, 1.2em);
+}
+
+/* 触摸设备优化 */
+@media (hover: none) {
+    button {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    button:active {
+        background: #45a049;
+        transform: scale(0.98);
+    }
+}
+
+/* 小屏幕设备特别优化 */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .game-container {
+        padding: 10px;
+    }
+    
+    .story-panel {
+        padding: 12px;
+        min-height: 150px;
+    }
+    
+    #choices {
+        gap: 8px;
+    }
+    
+    #choices button {
+        padding: 10px;
+    }
+    
+    .main-btn {
+        width: 150px;
+        height: 150px;
+        font-size: 20px;
+    }
+    
+    .sub-actions {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 滚动条美化 */
+.story-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.story-panel::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.story-panel::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.story-panel::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* 主布局 */
+.main-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+}
+
+/* 左侧面板 */
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 右侧故事面板 */
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 故事标签页 */
+.story-tabs {
+    display: flex;
+    gap: 5px;
+    padding: 0 10px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px 5px 0 0;
+    background: #f0f0f0;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    background: #4CAF50;
+    color: white;
+}
+
+/* 故事面板改进 */
+.story-panel {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0 5px 5px 5px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.story-content {
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    white-space: pre-line;
+}
+
+.story-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .story-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .tab-btn {
+        white-space: nowrap;
+    }
+}
+
+/* 故事内容样式美化 */
+.story-event {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid;
+    background: #f9f9f9;
+    border-radius: 0 5px 5px 0;
+}
+
+.story-event.main {
+    border-color: #2196F3;
+    background: #e3f2fd;
+}
+
+.story-event.special {
+    border-color: #FF9800;
+    background: #fff3e0;
+}
+
+.story-event.daily {
+    border-color: #4CAF50;
+    background: #e8f5e9;
+}
+
+.story-text {
+    margin-bottom: 10px;
+}
+
+.story-reward {
+    font-size: 0.9em;
+    color: #4CAF50;
+    font-style: italic;
+}
+
+.chapter-title {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #e3f2fd;
+    border-bottom: 1px solid #2196F3;
+}
+
+/* 章节标题栏样式 */
+.chapter-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #e3f2fd;
+    padding: 15px;
+    border-bottom: 2px solid #2196F3;
+    margin: -20px -20px 10px -20px; /* 抵消父元素的padding */
+}
+
+.chapter-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #1565C0;
+    margin-bottom: 5px;
+}
+
+.chapter-desc {
+    font-size: 0.9em;
+    color: #546E7A;
+}
+
+/* 调整故事内容区域的样式 */
+.story-content-wrapper {
+    padding-top: 10px;
+    overflow-y: auto;
+}
+
+/* 确保故事面板的滚动正常工作 */
+.story-panel {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+}
+
+.chapter-banner {
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
+    color: white;
+    padding: 20px;
+    margin: -15px -15px 20px -15px;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.chapter-info {
+    text-align: center;
+}
+
+.chapter-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.chapter-desc {
+    font-size: 1em;
+    opacity: 0.9;
+}
+
+/* 章节显示区域样式 */
+.current-chapter {
+    position: sticky;
+    top: 0;
+    background: #e3f2fd;
+    padding: 15px;
+    border-bottom: 2px solid #2196F3;
+    margin: -20px -20px 10px -20px;
+    z-index: 10;
+}
+
+.chapter-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #1565C0;
+    margin-bottom: 5px;
+}
+
+.chapter-desc {
+    font-size: 0.9em;
+    color: #546E7A;
+}
+
+/* 调整消息内容区域的样式 */
+.story-content-wrapper {
+    padding-top: 10px;
+    overflow-y: auto;
+}

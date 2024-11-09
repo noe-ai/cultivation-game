@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>凡心问道</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-title">
+            <h1>凡心问道</h1>
+            <p class="subtitle">一个修仙者的成长之路</p>
+        </div>
+        
+        <div class="main-layout">
+            <!-- 左侧：状态面板 -->
+            <div class="left-panel">
+                <div class="stats-panel">
+                    <!-- 境界信息 -->
+                    <div class="cultivation-info">
+                        <div class="current-state">
+                            <div class="level-title">当前境界</div>
+                            <div class="level-value"><span id="level">凡人</span></div>
+                        </div>
+                        <div class="next-state">
+                            <div class="level-title">下一境界</div>
+                            <div class="level-value"><span id="next-level">练气初期</span></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 修炼信息 -->
+                    <div class="cultivation-method">
+                        <div class="method-title">修炼方式</div>
+                        <div class="method-name"><span id="current-method">打坐</span></div>
+                        <div class="method-gains">
+                            <div>修为 <span id="gain-power">+1</span>/次</div>
+                            <div>神识 <span id="gain-spirit">+1</span>/次</div>
+                            <div id="passive-info" class="passive">还需点击<span id="clicks-to-passive">19</span>次解锁被动</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 属性信息 -->
+                    <div class="cultivation-stats">
+                        <div class="stat-item">
+                            <div class="stat-title">修为</div>
+                            <div class="stat-value"><span id="power">0</span></div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-title">神识</div>
+                            <div class="stat-value"><span id="spirit">0</span></div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-title">体魄</div>
+                            <div class="stat-value"><span id="strength">0</span></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 其他信息 -->
+                    <div class="other-stats">
+                        <div class="stat-item">
+                            <div class="stat-title">物品</div>
+                            <div class="stat-value"><span id="item-count">0</span></div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-title">成就</div>
+                            <div class="stat-value"><span id="achievement-count">0</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-panel">
+                    <div class="main-actions">
+                        <button id="cultivate" class="main-btn">修炼</button>
+                        <span id="click-power" class="click-power">+1</span>
+                    </div>
+                    <div class="sub-actions">
+                        <button id="cultivation-method" class="sub-btn">切换修炼方式</button>
+                        <button id="inventory" class="sub-btn">背包</button>
+                        <button id="achievements" class="sub-btn">成就</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 右侧：故事面板 -->
+            <div class="right-panel">
+                <div class="story-panel">
+                    <!-- 固定的章节显示区域 -->
+                    <div id="current-chapter" class="current-chapter">
+                        <div id="chapter-title" class="chapter-title">第一章 - 药师之约</div>
+                        <div id="chapter-desc" class="chapter-desc">村里的老药师待你如亲孙，教你认药采药。这日他重病在床，你暗自发誓一定要找到传说中的"续命草"。</div>
+                    </div>
+                    <!-- 消息内容区域 -->
+                    <div class="story-content-wrapper">
+                        <div id="story-content" class="story-content"></div>
+                        <div id="choices" class="story-choices"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/chapters.js"></script>
+    <script src="js/story.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html> 

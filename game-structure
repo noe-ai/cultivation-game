@@ -1,0 +1,7 @@
+凡心问道/
+├── index.html
+├── styles.css
+├── js/
+│   ├── game.js
+│   └── story.js
+└── README.md 
